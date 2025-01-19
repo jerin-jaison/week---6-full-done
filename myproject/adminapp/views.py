@@ -14,7 +14,6 @@ def admin_login_view(request):
         admin_name = request.POST.get('username')
         admin_password = request.POST.get('password')
 
-       
         user = authenticate(request, username=admin_name, password=admin_password)
 
         if user is not None and user.is_superuser:
@@ -33,8 +32,13 @@ def admin_home_view(request):
         messages.error(request, 'Access denied. You are not a superuser.')
         return redirect('admin_login')
 
-    users = User.objects.all()
-    return render(request, 'admin_home.html', {'users': users})
+    search_query = request.GET.get('search', '')
+    if search_query:
+        users = User.objects.filter(username__icontains=search_query) | User.objects.filter(email__icontains=search_query)
+    else:
+        users = User.objects.all()
+
+    return render(request, 'admin_home.html', {'users': users, 'search_query': search_query})
 
 @never_cache
 @login_required
@@ -77,7 +81,7 @@ def admin_edit_user(request, user_id):
         user.username = request.POST.get('username')
         user.email = request.POST.get('email')
         user.save()
-        messages.success(request, 'User updated successfully.')
+        messages.success(request, 'User  updated successfully.')
         return redirect('admin_home')
     
     return render(request, 'admin_edit_user.html', {'user': user})

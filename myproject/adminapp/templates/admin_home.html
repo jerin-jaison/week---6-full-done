@@ -108,7 +108,7 @@
 
         table {
             background-color: #2c2c2e;
-            color:rgb(101, 41, 41);
+            color: rgb(101, 41, 41);
         }
 
         table th, table td {
@@ -118,8 +118,6 @@
 
         table th {
             background-color: #3c3c3e;
-            
-
         }
 
         .alert {
@@ -151,6 +149,14 @@
     <!-- User Management Section -->
     <h2>User Management</h2>
 
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'admin_home' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Search by username or email" value="{{ search_query }}">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
     <!-- Create User Button -->
     <div class="mb-4 text-center">
         <a href="{% url 'admin_create_user' %}" class="btn btn-success">Create New User</a>
@@ -177,6 +183,10 @@
                     </td>
                 </tr>
                 {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">No users found.</td>
+                </tr>
             {% endif %}
         </tbody>
     </table>
