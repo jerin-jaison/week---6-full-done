@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            max-width: 500px;
+            margin: 3rem auto;
+            background: #1c1c1e;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+        }
+    
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+    
+        .form-label {
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #ffffff;
+        }
+    
+        .form-control {
+            background-color: #2c2c2e;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 0.8rem;
+            width: 100%;
+        }
+    
+        .form-control::placeholder {
+            color: #a5a5a5;
+        }
+    
+        .form-control:focus {
+            background-color: #3c3c3e;
+            border-color: #4f46e5;
+            box-shadow: 0 0 8px rgba(79, 70, 229, 0.8);
+        }
+    
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1rem; /* Reduced padding */
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9rem; /* Slightly smaller font */
+            text-align: center;
+            letter-spacing: 1px;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+            margin-top: 1rem;
+            color: #ffffff;
+            text-decoration: none;
+        }
+    
+        .btn-success {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            border: none;
+        }
+    
+        .btn-success:hover {
+            background: linear-gradient(135deg, #15803d, #16a34a);
+            box-shadow: 0px 5px 15px rgba(22, 163, 74, 0.6);
+        }
+    
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border: none;
+        }
+    
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            box-shadow: 0px 5px 15px rgba(245, 158, 11, 0.6);
+        }
+    
+        .btn-secondary {
+            background-color: #2c2c2e;
+            border: none;
+        }
+    
+        .btn-secondary:hover {
+            background-color: #3c3c3e;
+            color: #ffffff;
+            box-shadow: 0px 5px 15px rgba(79, 70, 229, 0.6);
+        }
+    
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    </style>
+    
+</head>
+<body>
+<div class="container">
+    <h2>Create New User</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-success">Create User</button>
+    </form>
+    <a href="{% url 'admin_home' %}" class="btn btn-secondary mt-3 d-block text-center">Back to Home</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+        }
+        .container {
+            margin-top: 300px;
+        }
+        h1 {
+            color: #ffcc00;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #ddd;
+        }
+        .btn-signout {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 30px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn-signout:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border: none;
+        }
+        .card-body {
+            text-align: center;
+        }
+        .card-title {
+            color: #ffcc00;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container text-center">
+    <div class="card mx-auto" style="max-width: 600px;">
+        <div class="card-body">
+{% if user.is_authenticated %}
+    <h1>Hello, {{ user.username}}!</h1>
+{% else %}
+    <h1>Welcome to the Home Page!</h1>
+{% endif %}
+            <!-- <p>Welcome to your personalized dashboard. Feel free to explore all the options available.</p> -->
+            <a href="{% url 'signout' %}" class="btn btn-signout mt-4">Sign Out</a>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
